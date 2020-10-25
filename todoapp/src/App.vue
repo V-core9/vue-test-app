@@ -1,16 +1,22 @@
 <template>
   <div id="app">
+    <Header headerTitle="Todo List Title"/>
     <TodoList v-bind:todoList="todoList" v-on:del-todo-single="deleteSingleTodo"/>
+    <TodoItemAdd v-on:add-todo-item="TodoItemAdd"/>
   </div>
 </template>
 
 <script>
+import Header from './components/layout/Header.vue';
 import TodoList from './components/TodoList.vue'
+import TodoItemAdd from './components/TodoItemAdd.vue'
 
 export default {
   name: 'App',
   components: {
-    TodoList
+    Header,
+    TodoList,
+    TodoItemAdd,
   },
   data() {
     return {
@@ -36,6 +42,10 @@ export default {
   methods: {
     deleteSingleTodo(id){
       this.todoList = this.todoList.filter(single => single.id !== id);
+    },
+    TodoItemAdd(newTodoItem){
+      newTodoItem.id = (this.todoList.length + 1);
+      this.todoList = [...this.todoList, newTodoItem];
     }
   }
 }
@@ -55,4 +65,8 @@ export default {
     color: #f0f0f0;
   }
 
+  #app {
+    margin: 10px;
+    background: #444;
+  }
 </style>

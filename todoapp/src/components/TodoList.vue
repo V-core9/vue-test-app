@@ -1,6 +1,5 @@
 <template>
     <div class="todoList">
-        <Header headerTitle="Todo List Title"/>
         <div class="singleItem" v-bind:key="single.id" v-for="single in todoList">
             <TodoItem v-bind:singleTodo="single" v-on:del-todo-single="$emit('del-todo-single', single.id)" />
         </div>
@@ -8,14 +7,12 @@
 </template>
 
 <script>
-import Header from './layout/Header.vue';
 import TodoItem from './TodoItem.vue';
 
 export default {
     name: "TodoList",
     components: {
         TodoItem,
-        Header,
     },
     props: ["todoList"]
 }
@@ -23,7 +20,6 @@ export default {
 
 <style scoped>
     .todoList {
-        margin: 5px;
         padding: 5px;
         background: rgba(255,255,255,0.1);
     }

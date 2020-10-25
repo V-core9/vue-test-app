@@ -16,6 +16,7 @@ export default {
 <style scoped>
     .header h1 {
         font-size: 1.5em;
-        margin-bottom: 0.25em;
+        font-weight: 500;
+        color: #03A9F4;
     }
 </style>
