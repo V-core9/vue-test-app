@@ -3,14 +3,21 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> | 
-      <router-link to="/todo">Todo</router-link>
+      <router-link to="/todo">Todo</router-link> | 
+      <router-link to="/vue-home">VueHome</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
+<script>
+export default {
+  name: "Application",
 
+}
+</script>
+
+<style lang="scss">
 
 * {
   padding: 0;

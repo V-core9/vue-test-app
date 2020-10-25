@@ -10,44 +10,43 @@
 import Header from '../layouts/Header.vue';
 import TodoList from './TodoList.vue'
 import TodoItemAdd from './TodoItemAdd.vue'
+import axios from 'axios';
 
 export default {
-  name: 'TodoContainer',
-  components: {
-    Header,
-    TodoList,
-    TodoItemAdd,
-  },
-  data() {
-    return {
-      todoList: [
-        {
-          id: 1,
-          title: "todo first thing",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "miki has a thing",
-          completed: true
-        },
-        {
-          id: 3,
-          title: "todo yeaaa thing",
-          completed: false
-        }
-      ]
-    }
-  },
-  methods: {
-    deleteSingleTodo(id){
-      this.todoList = this.todoList.filter(single => single.id !== id);
+    name: 'TodoContainer',
+    components: {
+        Header,
+        TodoList,
+        TodoItemAdd,
     },
-    TodoItemAdd(newTodoItem){
-      newTodoItem.id = (this.todoList.length + 1);
-      this.todoList = [...this.todoList, newTodoItem];
+    data() {
+        return {
+        todoList: []
+        }
+    },
+    methods: {
+        deleteSingleTodo(id){
+            axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+                .then(res => { this.todoList = this.todoList.filter(single => single.id !== id); console.log(res)})
+                .catch(error => console.log(error));
+           
+        },
+        TodoItemAdd(newTodoItem){
+            const { title, completed } = newTodoItem;
+
+            axios.post('https://jsonplaceholder.typicode.com/todos',{
+                title,
+                completed
+            })
+                .then(res =>this.todoList = [...this.todoList, res.data] )
+                .catch(error => console.log(error));
+        }
+    },
+    created() {
+        axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
+            .then( res => this.todoList = res.data )
+            .catch( error => console.log(error) );
     }
-  }
 }
 </script>
 
