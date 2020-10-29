@@ -18,8 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 .adminPage {
-    background: orange;
-    flex: 1;
+  background: orange;
+  flex: 1;
 }
 </style>
-

@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="navAdmin">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/admin">Admin</router-link>
@@ -8,7 +8,14 @@
 
 <script>
 export default {
-  name: "AppNavigation",
+  name: "AdminNavigation",
   components: {}
 };
 </script>
+
+<style scoped>
+#navAdmin {
+    display: flex;
+    flex-direction: row;
+}
+</style>

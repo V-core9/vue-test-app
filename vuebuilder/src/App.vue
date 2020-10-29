@@ -5,12 +5,9 @@
 </template>
 
 <script>
-
 export default {
   name: "MainApplication",
-  components: {
-    
-  }
+  components: {}
 };
 </script>
 
@@ -32,8 +29,8 @@ export default {
   position: relative;
 }
 
-#nav {
-  padding: 30px;
+#nav, #navAdmin {
+  padding: 10px 20px;
 
   a {
     font-weight: bold;

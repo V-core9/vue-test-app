@@ -1,21 +1,21 @@
 <template>
-    <div class="adminFooter">
-        Builder Header Part
-    </div>
+  <div class="adminFooter">
+    Footer Part
+    <button @click="$emit('set-admin-template', 'default')">Set Default Template</button>
+    <button @click="$emit('set-admin-template', 'rightSidebar')">Set rightSidebar Template</button>
+    <button @click="$emit('set-admin-template', 'topSidebar')">Set topSidebar Template</button>
+  </div>
 </template>
 
 <script>
-
 export default {
   name: "AdminFooter",
-  components: {
-    
-  }
+  components: {}
 };
 </script>
 
 <style lang="scss" scoped>
 .adminFooter {
-    background: #333;
+  background: #333;
 }
 </style>
