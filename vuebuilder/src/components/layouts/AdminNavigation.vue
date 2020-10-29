@@ -102,7 +102,7 @@ export default {
 .adminSidebar.toggledSidebar {
 
     #navAdmin{
-        
+
         a {
             gap: 0;
 
@@ -115,6 +115,16 @@ export default {
                 width: 0;
                 height: 0;
             }
+        }
+    }
+}
+
+.adminSidebar.topSidebar {
+
+    .adminSidebarInner {
+
+        #navAdmin{
+            display: flex;
         }
     }
 }

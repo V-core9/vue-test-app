@@ -1,5 +1,5 @@
 <template>
-  <div class="adminSidebar" v-bind:class="{'toggledSidebar':this.sidebarStatus}">
+  <div class="adminSidebar" v-bind:class="{'toggledSidebar':sidebarStatus}">
     <div class="adminSidebarInner">
         <AdminNavigation />
         <AdminNavigation />
@@ -7,9 +7,9 @@
         <AdminNavigation />
     </div>
     <div class="botOptions">
-        <button @click="toggleSidebar">
-            <font-awesome-icon :icon="adminIcon" />
-            Toggle Sidebar
+        <button @click="setSidebarMode">
+            <font-awesome-icon :icon="homeIcon" />
+            <p>Toggle Sidebar</p>
         </button>
     </div>
   </div>
@@ -18,7 +18,7 @@
 <script>
 import CookieHelper from "@/components/helpers/CookieHelper.js";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faSpinner, faUsers, faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faAngleDoubleRight, faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons'
 import AdminNavigation from "@/components/layouts/AdminNavigation.vue";
 
 export default {
@@ -31,24 +31,33 @@ export default {
     return {
         sidebarStatus: false,
         homeIcon: faSpinner,
-        aboutIcon: faUsers,
-        adminIcon: faAngleDoubleLeft,
+        leftArr: faAngleDoubleLeft,
+        rightArr: faAngleDoubleRight,
     }
   },
   methods: {
-      toggleSidebar : function() {
-            alert('toggle sidebar');
-            if (CookieHelper.getCookie('sidebarStatus') != ""){
+      setSidebarMode : function() {
+            if (CookieHelper.getCookie('sidebarStatus') != "true"){
                 this.sidebarStatus = true;
+                this.homeIcon = this.rightArr;
                 CookieHelper.setCookie('sidebarStatus', true, 30);
             } else {
                 this.sidebarStatus = false;
+                this.homeIcon = this.leftArr;
                 CookieHelper.setCookie('sidebarStatus', false, 30);
+            }
+      },
+      getSidebarMode : function() {
+            if (CookieHelper.getCookie('sidebarStatus') == "true"){
+                this.sidebarStatus = true;
+                this.homeIcon = this.rightArr;
+            } else {
+                this.homeIcon = this.leftArr;
             }
       }
   },
   created() {
-      this.toggleSidebar();
+      this.getSidebarMode();
   }
 };
 </script>
@@ -84,12 +93,37 @@ export default {
 .adminSidebar.toggledSidebar {
     min-width: unset;
     width: min-content;
+
+    .botOptions {
+
+        p {
+            font-size: 0;
+        }
+    }
 }
 
-.topSidebar {
+.topSidebar {        
+    .adminSidebar {
+        width: inherit;
 
-    #navAdmin{
-        flex-direction: row;
+        .adminSidebarInner {
+            display: flex;
+            flex-direction: row;
+
+            #navAdmin{
+                flex-direction: row;
+            }
+        }
+        
+        .botOptions {
+            display: flex;
+
+            button {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+            }
+        }
     }
 }
 </style>
