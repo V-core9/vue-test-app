@@ -77,7 +77,9 @@ export default {
         this.setDefaultOrder();
         console.log('AdminContainer.data.templateLayout already set!')
       };
-    }   
+    } else {
+      this.setDefaultOrder();
+    }
   }
 };
 </script>
@@ -101,7 +103,10 @@ export default {
     display: flex;
     flex-direction: column;
     flex: 1;
+
+    .adminSidebar {
+      flex-direction: row;
+    }
   }
 }
-
 </style>

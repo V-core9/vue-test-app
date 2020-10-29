@@ -18,10 +18,8 @@ export default {
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  font-size: 18.5px;
+  font-family: monospace;
   color: #2c3e50;
   min-height: 100vh;
   display: flex;
@@ -29,7 +27,7 @@ export default {
   position: relative;
 }
 
-#nav, #navAdmin {
+#nav {
   padding: 10px 20px;
 
   a {
